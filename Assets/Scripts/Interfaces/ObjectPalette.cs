@@ -152,6 +152,7 @@ public class ObjectPalette : MonoBehaviour
     void OnTriggerExit(Collider c)
     {
         if (!hoveredItem) return;
+        if (hoveredItem != c.gameObject) return;
         if (controller.gripped) return;
         Material m = hoveredItem.GetComponent<MeshRenderer>().sharedMaterial;
         m = new Material(m);
