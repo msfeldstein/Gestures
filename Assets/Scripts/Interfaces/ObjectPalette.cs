@@ -154,15 +154,17 @@ public class ObjectPalette : MonoBehaviour
         if (!hoveredItem) return;
         if (hoveredItem != c.gameObject) return;
         if (controller.gripped) return;
-        Material m = hoveredItem.GetComponent<MeshRenderer>().sharedMaterial;
+        Material m = c.gameObject.GetComponent<MeshRenderer>().sharedMaterial;
         m = new Material(m);
         Color col = m.color;
         col *= 0f;
         m.SetColor("_EmissionColor", col);
         Debug.Log("Leave");
-        hoveredItem.GetComponent<MeshRenderer>().sharedMaterial = m;
-        hoveredItem = null;
-
+        c.gameObject.GetComponent<MeshRenderer>().sharedMaterial = m;
+        if (hoveredItem == c.gameObject)
+        {
+            hoveredItem = null;
+        }
     }
 
     void OnGripped(object o, ClickedEventArgs e)
